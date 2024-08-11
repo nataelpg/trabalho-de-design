@@ -20,12 +20,22 @@ public class Sistema {
     //listar todos os estacionamentos
     public static void listarEstacionamentos()
     {
+        if (estacionamentos.isEmpty()) {
+            System.out.println("Nenhum estacionamento cadastrado");
+            return;
+        }
         for (Map.Entry<Integer, Estacionamento> entry : estacionamentos.entrySet()) {
             Estacionamento estacionamento = entry.getValue();
-            System.out.println("ID: " + estacionamento.getEstacionamentoId() + "Nome: " + estacionamento.getNome());
+            System.out.println("ID: " + estacionamento.getEstacionamentoId());
             System.out.println("Nome: " + estacionamento.getNome());
             System.out.println();
         }
+    }
+
+    public static void listarDetalhesEstacionamento(int id) 
+    {
+        Estacionamento estacionamento = buscarEstacionamento(id);
+        estacionamento.detalhesEstacionamento();
     }
 
     //exibir detalhes do estacionamento

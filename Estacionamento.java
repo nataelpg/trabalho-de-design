@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Estacionamento {
     private static int proxId = 0;
@@ -8,19 +9,74 @@ public class Estacionamento {
     private Admin responsavel;
     private String nome;
     private String cnpj;
+    private String endereco;  // Adicione o endereço do estacionamento
+    private String telefone;  // Adicione o telefone do estacionamento
+    private String email;  // Adicione o email do estacionamento
+    private String horarioFuncionamento;  // Adicione o horário de funcionamento do estacionamento
     private Map<Integer, Vaga> vagas;  // Mudei para Map
 
-    public Estacionamento(Admin responsavel, String nome, String cnpj) {
+    public Estacionamento(Admin responsavel, String nome, String cnpj, String endereco, String telefone, String email, String horarioFuncionamento) {
         this.responsavel = responsavel;
         this.nome = nome;
         this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+        this.horarioFuncionamento = horarioFuncionamento;
         this.estacionamentoId = proxId++;
         this.vagas = new HashMap<>();  // Inicialize o Map
-        criarVagas(20);  // Crie 10 vagas ao criar o estacionamento
+        criarVagas();  // Crie 10 vagas ao criar o estacionamento
+    }
+
+    public void setEndereco(String endereco) {
+        if (endereco == null) {
+            throw new IllegalArgumentException("Endereço não pode ser nulo");
+        }
+        this.endereco = endereco;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setTelefone(String telefone) {
+        if (telefone == null) {
+            throw new IllegalArgumentException("Telefone não pode ser nulo");
+        }
+        this.telefone = telefone;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setEmail(String email) {
+        if (email == null) {
+            throw new IllegalArgumentException("Email não pode ser nulo");
+        }
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setResponsavel(Admin responsavel) {
+        if (responsavel == null) {
+            throw new IllegalArgumentException("Responsável não pode ser nulo");
+        }
         this.responsavel = responsavel;
+    }
+
+    public void setHorarioFuncionamento(String horarioFuncionamento) {
+        if (horarioFuncionamento == null) {
+            throw new IllegalArgumentException("Horário de funcionamento não pode ser nulo");
+        }
+        this.horarioFuncionamento = horarioFuncionamento;
+    }
+
+    public String getHorarioFuncionamento() {
+        return horarioFuncionamento;
     }
 
     public Admin getResponsavel() {
@@ -47,20 +103,30 @@ public class Estacionamento {
         return estacionamentoId;
     }
 
-        public void criarVagas(int n) {
-        for (int i = 0; i < n; i++) {
-            // Supondo que Vaga tem um construtor que aceita um ID e um status
-            Vaga novaVaga = new Vaga(true);  // Cria vaga com status 'true' (disponível)
-            adicionarVaga(novaVaga);
+    public void criarVagas() {
+        Random rand = new Random();
+        
+        int quantidadeVagas = rand.nextInt(21) + 10; // Randomize de 10 até 30
+        for (int j = 0; j < quantidadeVagas; j++) {
+            TipoVaga tipoVaga = TipoVaga.values()[rand.nextInt(TipoVaga.values().length)]; // Random do TipoVaga
+            TipoVeiculo tipoVeiculo = TipoVeiculo.values()[rand.nextInt(TipoVeiculo.values().length)]; // Random do TipoVeiculo
+            boolean status = rand.nextBoolean(); // Random do status
+
+            Vaga vaga = new Vaga(status, tipoVaga.toString(), tipoVeiculo.toString());
+            vagas.put(vaga.getId(), vaga);
         }
     }
 
     public void detalhesEstacionamento() {
+        System.out.println("ID: " + estacionamentoId);
         System.out.println("Nome: " + nome);
         System.out.println("CNPJ: " + cnpj);
-        // Adicione a lógica para exibir o endereço se disponível
         System.out.println("Responsável: " + responsavel.getNome());
-        System.out.println("ID: " + estacionamentoId);
+        System.out.println("Endereço: " + endereco);
+        var telefone = this.telefone.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+        System.out.println("Telefone: " + telefone);
+        System.out.println("Email: " + email);
+        System.out.println("Horário de Funcionamento: " + horarioFuncionamento);
     }
 
     public void exibirVagasDisponiveis() {
@@ -69,7 +135,12 @@ public class Estacionamento {
         for (Map.Entry<Integer, Vaga> entry : vagas.entrySet()) {
             Vaga vaga = entry.getValue();
             // imprime os detalhes da vaga com vaga.id e vaga.status não use detalhesVaga
-            System.out.println("ID da Vaga: " + vaga.getId() + "Status: " + (vaga.getStatus() ? "Disponível" : "Ocupada"));
+            System.out.println("ID da Vaga: " + vaga.getId() + " ");
+            System.out.println("Tipo da Vaga: " + vaga.getTipoVaga() + " ");
+            System.out.println("Tipo de Veículo: " + vaga.getTipoVeiculo() + " ");
+            System.out.println("Status: " + (vaga.getStatus() ? "Disponível" : "Ocupada") + " ");
+            System.out.println("____________________________________________________");
+
             i++;
             if (i % 5 == 0) {
                 System.out.println();
