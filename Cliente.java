@@ -4,14 +4,16 @@ import java.util.Random;
 
 public class Cliente extends Pessoa {
     public String nome;
+    public String senha;
     public String cpf;
     //lista de veiculos
     public Map<Integer, Veiculo> veiculos;  // Changed to Map<String, Veiculo>
 
     // Constructor
-    public Cliente(String nome, String cpf) {
+    public Cliente(String nome, String cpf, String senha) {
         super(nome, cpf);
         this.veiculos = new HashMap<>();
+        this.senha = senha;
         criarVeiculos();
     }
 
@@ -33,6 +35,14 @@ public class Cliente extends Pessoa {
     // Definindo o método getCpf
     public String getCpf() {
         return cpf;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     // Definindo o método criarVeiculos
@@ -63,6 +73,14 @@ public class Cliente extends Pessoa {
         for (Map.Entry<Integer, Veiculo> entry : veiculos.entrySet()) {
             Veiculo veiculo = entry.getValue();
             System.out.println(veiculo);
+        }
+    }
+
+    public void login(String senha) {
+        if (this.senha.equals(senha)) {
+            System.out.println("Login realizado com sucesso!");
+        } else {
+            System.out.println("Senha incorreta!");
         }
     }
 }
