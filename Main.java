@@ -33,12 +33,6 @@ public class Main {
             "maria@gmail.com",
             "05:00 - 18:00");
 
-        Reserva reserva = new Reserva(1, "Carro", "Estacionamento do Natael");
-        Reserva reserva2 = new Reserva(2, "Moto", "Estacionamento do João");
-
-        sistema.adicionarReserva(reserva);
-        sistema.adicionarReserva(reserva2);
-
         // Adicionando os estacionamentos
         sistema.adicionarEstacionamento(estacionamento);
         sistema.adicionarEstacionamento(estacionamento2);
@@ -88,6 +82,10 @@ public class Main {
                     estacionamento.exibirVagasDisponiveis(tipoVeiculo);
                     System.out.println("Escolha a vaga desejada: ");
 
+                    int idVaga = scanner.nextInt();
+                    Reserva reserva = new Reserva(idVaga, tipoVeiculo, estacionamento.getNome());
+                    sistema.adicionarReserva(reserva);
+                    System.out.println("Reserva realizada com sucesso!\n");
 
                     break;
                 // case 2:
@@ -95,6 +93,9 @@ public class Main {
                 //     break;
                 case 3:
                     sistema.listarReservas();
+                    break;
+                case 4:
+                    cliente.exibirVeiculos();
                     break;
                 case 5:
                     sistema.listarEstacionamentos();
