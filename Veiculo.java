@@ -1,6 +1,3 @@
-enum TipoVeiculo {
-    CARRO, MOTO, CAMINHAO
-}
 
 public class Veiculo {
     private String marca;

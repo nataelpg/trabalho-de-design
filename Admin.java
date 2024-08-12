@@ -1,7 +1,7 @@
 
 public class Admin extends Pessoa {
     private Estacionamento estacionamento;
-
+    
     public Admin(String nome, String cpf, Estacionamento estacionamento) {
         super(nome, cpf);
         this.estacionamento = estacionamento;

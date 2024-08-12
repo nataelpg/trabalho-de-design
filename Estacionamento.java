@@ -132,19 +132,44 @@ public class Estacionamento {
     public void exibirVagasDisponiveis() {
     //exibe 5 vagas por linha 
         int i = 0;
+        System.out.println(" ");
+        System.out.println("VAGAS DISPONIVEIS: ");
+        System.out.println("____________________________________________________");
         for (Map.Entry<Integer, Vaga> entry : vagas.entrySet()) {
             Vaga vaga = entry.getValue();
             // imprime os detalhes da vaga com vaga.id e vaga.status não use detalhesVaga
-            System.out.println("ID da Vaga: " + vaga.getId() + " ");
-            System.out.println("Tipo da Vaga: " + vaga.getTipoVaga() + " ");
-            System.out.println("Tipo de Veículo: " + vaga.getTipoVeiculo() + " ");
-            System.out.println("Status: " + (vaga.getStatus() ? "Disponível" : "Ocupada") + " ");
-            System.out.println("____________________________________________________");
+            if (vaga.getStatus()) {
+                System.out.println("ID da Vaga: " + vaga.getId() + " ");
+                System.out.println("Tipo da Vaga: " + vaga.getTipoVaga() + " ");
+                System.out.println("Tipo de Veículo: " + vaga.getTipoVeiculo() + " ");
+                System.out.println("Status: " + (vaga.getStatus() ? "Disponível" : "Ocupada") + " ");
+                System.out.println("____________________________________________________");
 
-            i++;
-            if (i % 5 == 0) {
-                System.out.println();
+                i++;
+                if (i % 5 == 0) {
+                    System.out.println();
+                }
             }
+        }
+    }
+
+    //reservar vaga
+    public void reservarVaga(int idVaga, String tipoVeiculo) {
+        Vaga vaga = vagas.get(idVaga);
+        if (vaga == null) {
+            System.out.println("Vaga não encontrada");
+            return;
+        }
+
+        if (vaga.getStatus()) {
+            if (vaga.getTipoVeiculo().equals(tipoVeiculo)) {
+                vaga.setStatus(false);
+                System.out.println("Vaga reservada com sucesso");
+            } else {
+                System.out.println("Tipo de veículo não permitido");
+            }
+        } else {
+            System.out.println("Vaga ocupada");
         }
     }
 

@@ -67,11 +67,15 @@ public class Main {
 
             switch (op) {
                 case 1:
+                    // reserva de vagas
                     sistema.listarEstacionamentos();
                     System.out.println("Escolha um estacionamento: ");
                     int idEstacionamento = scanner.nextInt();
                     Estacionamento estacionamentoEscolhido = sistema.buscarEstacionamento(idEstacionamento);
-                    estacionamentoEscolhido.exibirVagasDisponiveis();
+                    estacionamento.exibirVagasDisponiveis();
+                    System.out.println("Escolha a vaga desejada: ");
+                    int idVaga = scanner.nextInt();
+
                     break;
                 // case 2:
                 //     admin.cancelarReserva();
