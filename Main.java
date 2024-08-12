@@ -33,6 +33,12 @@ public class Main {
             "maria@gmail.com",
             "05:00 - 18:00");
 
+        Reserva reserva = new Reserva(1, "Carro", "Estacionamento do Natael");
+        Reserva reserva2 = new Reserva(2, "Moto", "Estacionamento do João");
+
+        sistema.adicionarReserva(reserva);
+        sistema.adicionarReserva(reserva2);
+
         // Adicionando os estacionamentos
         sistema.adicionarEstacionamento(estacionamento);
         sistema.adicionarEstacionamento(estacionamento2);
@@ -87,9 +93,9 @@ public class Main {
                 // case 2:
                 //     admin.cancelarReserva();
                 //     break;
-                // case 3:
-                //     admin.minhasReservas();
-                //     break;
+                case 3:
+                    sistema.listarReservas();
+                    break;
                 case 5:
                     sistema.listarEstacionamentos();
                     System.out.println("Digite o id do estacionamento que deseja ver os detalhes: ");
