@@ -4,6 +4,19 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Cliente cliente = new Cliente("Natael", "123456789", "123456");
+        System.out.println("Bem-vindo ao estacionamento do Natael");
+        System.out.println("Faça login para continuar");
+        System.out.println("Digite a senha do usuário: ");
+
+        String login = scanner.nextLine();
+        while (!login.equals(cliente.getSenha())) {
+            System.out.println("Digite a senha do usuário: ");
+            login = scanner.nextLine();
+            cliente.login(login);
+        }
 
         Sistema sistema = new Sistema();
         Cliente cliente = new Cliente("Natael", "123456789");
@@ -52,9 +65,7 @@ public class Main {
         estacionamento2.setResponsavel(admin2);
         estacionamento3.setResponsavel(admin3);
 
-
         int op = 0;
-        Scanner scanner = new Scanner(System.in);
 
         while (op != 9) {
             System.out.println("Escolha uma opção: ");
