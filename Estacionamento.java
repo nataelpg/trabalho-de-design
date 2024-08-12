@@ -108,8 +108,13 @@ public class Estacionamento {
         
         int quantidadeVagas = rand.nextInt(21) + 10; // Randomize de 10 até 30
         for (int j = 0; j < quantidadeVagas; j++) {
-            TipoVaga tipoVaga = TipoVaga.values()[rand.nextInt(TipoVaga.values().length)]; // Random do TipoVaga
             TipoVeiculo tipoVeiculo = TipoVeiculo.values()[rand.nextInt(TipoVeiculo.values().length)]; // Random do TipoVeiculo
+            TipoVaga tipoVaga = null; // Initialize tipoVaga with null
+            if (tipoVeiculo == tipoVeiculo.MOTO) {
+                tipoVaga = tipoVaga.SIMPLES;
+            } else {
+                tipoVaga = TipoVaga.values()[rand.nextInt(TipoVaga.values().length)];
+            }
             boolean status = rand.nextBoolean(); // Random do status
 
             Vaga vaga = new Vaga(status, tipoVaga.toString(), tipoVeiculo.toString());
@@ -129,16 +134,17 @@ public class Estacionamento {
         System.out.println("Horário de Funcionamento: " + horarioFuncionamento);
     }
 
-    public void exibirVagasDisponiveis() {
+    public void exibirVagasDisponiveis(String tipoVeiculo) {
     //exibe 5 vagas por linha 
+
         int i = 0;
         System.out.println(" ");
-        System.out.println("VAGAS DISPONIVEIS: ");
+        System.out.println("VAGAS DISPONIVEIS TIPO " + tipoVeiculo);
         System.out.println("____________________________________________________");
         for (Map.Entry<Integer, Vaga> entry : vagas.entrySet()) {
             Vaga vaga = entry.getValue();
             // imprime os detalhes da vaga com vaga.id e vaga.status não use detalhesVaga
-            if (vaga.getStatus()) {
+            if (vaga.getStatus() && vaga.getTipoVeiculo().equals(tipoVeiculo)) {
                 System.out.println("ID da Vaga: " + vaga.getId() + " ");
                 System.out.println("Tipo da Vaga: " + vaga.getTipoVaga() + " ");
                 System.out.println("Tipo de Veículo: " + vaga.getTipoVeiculo() + " ");

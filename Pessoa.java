@@ -1,10 +1,6 @@
-
-
 public class Pessoa {
     private String nome;
     private String cpf;
-    //lista de veiculos
-    private Veiculo[] veiculos;
 
     // Construtor
     public Pessoa(String nome, String cpf) {
@@ -30,15 +26,5 @@ public class Pessoa {
     // Definindo o método getCpf
     public String getCpf() {
         return cpf;
-    }
-
-    // Definindo o método setVeiculos
-    public void adicionarVeiculos(Veiculo[] veiculos) {
-        this.veiculos = veiculos;
-    }
-
-    // Definindo o método getVeiculos
-    public Veiculo[] getVeiculos() {
-        return veiculos;
     }
 }

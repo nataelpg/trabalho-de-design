@@ -1,21 +1,28 @@
 
 public class Veiculo {
-    private String marca;
+    private String placa;
     private String tipoVeiculo;
     private int ano;
-    
-    public Veiculo(String marca, String tipoVeiculo, int ano) {
-        this.marca = marca;
+    private static int proxId = 0;
+    private int id = proxId++;
+
+    public Veiculo(String placa, String tipoVeiculo, int ano) {
+        this.placa = placa;
         this.tipoVeiculo = tipoVeiculo;
         this.ano = ano;
+        this.id = proxId++;
+    }
+
+    public int getId() {
+        return id;
     }
     
-    public String getMarca() {
-        return marca;
+    public String getPlaca() {
+        return placa;
     }
     
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
     
     public String getTipoVeiculo() {
@@ -36,6 +43,6 @@ public class Veiculo {
     
     @Override
     public String toString() {
-        return "Veiculo [marca=" + marca + ", tipoVeiculo=" + tipoVeiculo + ", ano=" + ano + "]";
+        return "Veiculo [id=" + id + ", placa=" + placa + ", tipoVeiculo=" + tipoVeiculo + ", ano=" + ano + "]";
     }
 }

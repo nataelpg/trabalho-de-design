@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
         Sistema sistema = new Sistema();
+        Cliente cliente = new Cliente("Natael", "123456789");
         // Criação dos objetos
         Estacionamento estacionamento = new Estacionamento(
             null, 
@@ -46,12 +47,6 @@ public class Main {
         estacionamento3.setResponsavel(admin3);
 
 
-        // switch case para acoes que muma pessoa pode fazer
-        // 1 - Reservar vaga
-        // 2 - Cancelar reserva
-        // 3 - MInhas  reservas (historico)
-        // 4 - Ver estacionamentos
-
         int op = 0;
         Scanner scanner = new Scanner(System.in);
 
@@ -72,9 +67,21 @@ public class Main {
                     System.out.println("Escolha um estacionamento: ");
                     int idEstacionamento = scanner.nextInt();
                     Estacionamento estacionamentoEscolhido = sistema.buscarEstacionamento(idEstacionamento);
-                    estacionamento.exibirVagasDisponiveis();
+                    System.out.println("Seus veiculos: ");
+                    if (cliente.veiculos.isEmpty()) {
+                        System.out.println("Nenhum veículo cadastrado");
+                        continue;
+                    }
+                    cliente.exibirVeiculos();
+                    System.out.println("Escolha um veículo: ");
+                    int idVeiculo = scanner.nextInt();
+
+                    Veiculo veiculo = cliente.veiculos.get(idVeiculo);
+                    String tipoVeiculo = veiculo.getTipoVeiculo();
+
+                    estacionamento.exibirVagasDisponiveis(tipoVeiculo);
                     System.out.println("Escolha a vaga desejada: ");
-                    int idVaga = scanner.nextInt();
+
 
                     break;
                 // case 2:
