@@ -1,10 +1,16 @@
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
 
         Sistema sistema = new Sistema();
         Cliente cliente = new Cliente("Natael", "123456789");
+
+        // map de reserva
+        Map<Integer, Reserva> reservas = new HashMap<Integer, Reserva>();
+        
         // Criação dos objetos
         Estacionamento estacionamento = new Estacionamento(
             null, 
@@ -88,11 +94,27 @@ public class Main {
                     System.out.println("Reserva realizada com sucesso!\n");
 
                     break;
-                // case 2:
-                //     admin.cancelarReserva();
-                //     break;
+                case 2:
+                    sistema.listarReservas();
+                    reservas = sistema.getReservas();
+                    if (reservas.isEmpty()) {
+                        System.out.println("Nenhuma reserva cadastrada");
+                        System.out.println();
+                        continue;
+                    }
+                    System.out.println("Digite o id da reserva que deseja cancelar: ");
+                    int idReserva = scanner.nextInt();
+                    sistema.removerReserva(idReserva);
+                    System.out.println("Reserva cancelada com sucesso!\n");
+                    System.out.println();
+                    break;
                 case 3:
                     sistema.listarReservas();
+                    reservas = sistema.getReservas();
+                    if (reservas.isEmpty()) {
+                        System.out.println("Nenhuma reserva cadastrada");
+                        System.out.println();
+                    }
                     break;
                 case 4:
                     cliente.exibirVeiculos();

@@ -13,13 +13,21 @@ public class Sistema {
         reservas.put(reserva.getReservaId(), reserva);
     }
 
+    //função para remover uma reserva
+    public static void removerReserva(int id)
+    {
+        reservas.remove(id);
+    }
+
+    //get lista de reservas
+    public static Map<Integer, Reserva> getReservas()
+    {
+        return reservas;
+    }
+
     //listar todas as reservas
     public static void listarReservas()
     {
-        if (reservas.isEmpty()) {
-            System.out.println("Nenhuma reserva cadastrada");
-            return;
-        }
         for (Map.Entry<Integer, Reserva> entry : reservas.entrySet()) {
             Reserva reserva = entry.getValue();
             System.out.println("____________________________________________________");
