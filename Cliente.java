@@ -3,39 +3,18 @@ import java.util.Map;
 import java.util.Random;
 
 public class Cliente extends Pessoa {
-    public String nome;
     public String senha;
-    public String cpf;
     //lista de veiculos
     public Map<Integer, Veiculo> veiculos;  // Changed to Map<String, Veiculo>
 
     // Constructor
     public Cliente(String nome, String cpf, String senha) {
-        super(nome, cpf);
+        super(nome, cpf); 
         this.veiculos = new HashMap<>();
         this.senha = senha;
         criarVeiculos();
     }
 
-    // Definindo o método setNome
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    // Definindo o método getNome
-    public String getNome() {
-        return nome;
-    }
-
-    // Definindo o método setCpf
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    // Definindo o método getCpf
-    public String getCpf() {
-        return cpf;
-    }
 
     public void setSenha(String senha) {
         this.senha = senha;
@@ -65,7 +44,7 @@ public class Cliente extends Pessoa {
     }
 
     public void exibirVeiculos() {
-        System.out.println("Veiculos de " + this.nome);
+        System.out.println("Veiculos de " + this.getNome());
         if (veiculos.isEmpty()) {
             System.out.println("Nenhum veiculo cadastrado");
             return;

@@ -19,7 +19,6 @@ public class Main {
         }
 
         Sistema sistema = new Sistema();
-        Cliente cliente = new Cliente("Natael", "123456789");
 
         // map de reserva
         Map<Integer, Reserva> reservas = new HashMap<Integer, Reserva>();
